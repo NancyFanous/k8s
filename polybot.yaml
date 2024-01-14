@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polybot-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: polybot
+  template:
+    metadata:
+      labels:
+        app: polybot
+    spec:
+      serviceAccountName: polybot-service-account
+      containers:
+      - name: polybot-container
+        image: 933060838752.dkr.ecr.us-east-1.amazonaws.com/polybot_nancyf
+        env:
+        - name: TELEGRAM_APP_URL
+          value: "a578d982683814859abe5fd98f8e9674-a35b02886e2e3468.elb.us-east-1.amazonaws.com:8443"
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "50m"
+          limits:
+            memory: "100Mi"
+            cpu: "100m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: polybot-service
+spec:
+  selector:
+    app: polybot
+  ports:
+    - protocol: TCP
+      port: 8443
+      targetPort: 8443
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: polybot-service-account
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::933060838752:role/nancy_s3_role

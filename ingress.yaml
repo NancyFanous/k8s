@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  tls:
+    - hosts:
+        - "*.us-east-1.amazonaws.com"
+      secretName: tls-secret
+
+  rules:
+    - host: a578d982683814859abe5fd98f8e9674-a35b02886e2e3468.elb.us-east-1.amazonaws.com
+      http:
+        paths:
+          - path: /nancy_polybot
+            pathType: Prefix
+            backend:
+              service:
+                name: polybot-service
+                port:
+                  number: 8443

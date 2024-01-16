@@ -12,7 +12,6 @@ spec:
       labels:
         app: polybot
     spec:
-      serviceAccountName: polybot-service-account
       containers:
       - name: polybot-container
         image: 933060838752.dkr.ecr.us-east-1.amazonaws.com/polybot_nancyf
@@ -40,11 +39,3 @@ spec:
       port: 8443
       targetPort: 8443
   type: ClusterIP
-
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: polybot-service-account
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::933060838752:role/nancy_s3_role

@@ -2,17 +2,19 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-ingress
+  namespace: nancyf
 spec:
+  ingressClassName: nginx
   tls:
     - hosts:
-        - "*.us-east-1.amazonaws.com"
+        - nancy-bot.atech-bot.click
       secretName: tls-secret
 
   rules:
-    - host: a578d982683814859abe5fd98f8e9674-a35b02886e2e3468.elb.us-east-1.amazonaws.com
+    - host: nancy-bot.atech-bot.click
       http:
         paths:
-          - path: /nancy_polybot
+          - path: /
             pathType: Prefix
             backend:
               service:

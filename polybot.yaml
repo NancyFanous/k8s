@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
       - name: polybot-container
-        image: 933060838752.dkr.ecr.us-east-1.amazonaws.com/polybot_nancyf
+        image: 933060838752.dkr.ecr.us-east-1.amazonaws.com/polybot_nancyf:1.6
         env:
         - name: TELEGRAM_APP_URL
-          value: "a578d982683814859abe5fd98f8e9674-a35b02886e2e3468.elb.us-east-1.amazonaws.com:8443"
+          value: "nancy-bot.atech-bot.click	:443"
         resources:
           requests:
             memory: "50Mi"

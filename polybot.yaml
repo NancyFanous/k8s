@@ -17,7 +17,7 @@ spec:
         image: 933060838752.dkr.ecr.us-east-1.amazonaws.com/polybot_nancyf:1.6
         env:
         - name: TELEGRAM_APP_URL
-          value: "nancy-bot.atech-bot.click	:443"
+          value: "https://nancy-bot.atech-bot.click:443"
         resources:
           requests:
             memory: "50Mi"
